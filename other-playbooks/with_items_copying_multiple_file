@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: copy multiple files
+      copy:
+         src: "{{ item }}"
+         dest: /home/ansible/tmp/
+         mode: 0755
+      with_items:
+               - /home/ansible/file1.txt
+               - /home/ansible/file2.txt
+               - /home/ansible/file3.txt

@@ -1,0 +1,9 @@
+---
+  - name: testing with_seq statement
+    hosts: web
+    tasks:
+      - name: create some user
+        user:
+          name: "{{ item }}"
+          state: present
+        with_sequence: start=0 end=5 format=testuser%02x # This will allow to create testuser00 - testuser05

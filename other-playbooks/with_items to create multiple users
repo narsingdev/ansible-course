@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: create multiple users
+      user:
+        name: "{{ item.name }}"
+        group: "{{ item.groups }}"
+        state: present
+      with_items:
+               - { name: apache, groups: ansible }
+               - { name: tomcat, groups: ansible }

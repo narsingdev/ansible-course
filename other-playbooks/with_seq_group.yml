@@ -1,0 +1,9 @@
+---
+  - name: creating some groups
+    hosts: web
+    tasks:
+      - name: create 4 groups
+        group:
+          name: "sales{{ item }}"
+          state: present
+        with_sequence: count=4

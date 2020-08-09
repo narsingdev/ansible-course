@@ -1,0 +1,24 @@
+---
+  - name: Install php & MariaDB
+    hosts: all
+    remote_user: admin
+    become: true
+    tasks:
+      - name: Installing php & mariadb pkgs
+        yum:
+          name: "{{ item }}"
+          state: present
+        loop:
+          - php
+          - mariadb
+      - name: Installing Development tools groups
+        yum:
+          name: "@Development tools"
+          state: present
+        when: inventory_hostname in groups['web']
+      - name: Updating all the pkgs
+        yum:
+          name: "*"
+          state: latest
+        when: inventory_hostname in groups['db']
+

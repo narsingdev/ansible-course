@@ -1,0 +1,12 @@
+---
+  - name: testing with_fileglobing
+    hosts: db
+    tasks:
+      - name: Copy each file over that matches the given pattern
+        copy:
+          src: "{{ item }}"
+          dest: "/etc/fooapp/"
+          owner: "root"
+          mode: 0600
+        with_fileglob:
+          - "stuff/*"

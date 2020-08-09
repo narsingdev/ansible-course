@@ -1,0 +1,12 @@
+---
+  - name: Generate hostname & ip address
+    hosts: all
+    remote_user: admin
+    become: true
+    tasks:
+      - name: Generating hostname and their ip address
+        template:
+          src: hosts.j2
+          dest: /etc/hosts
+        when: inventory_hostname in groups['dev']
+
