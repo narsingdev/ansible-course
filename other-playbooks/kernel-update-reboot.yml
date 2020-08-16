@@ -1,12 +1,20 @@
 ---
   - hosts: web
     tasks:
+# Installing all security updates
+
+      - name: install security updates
+        yum:
+          name: '*'
+          security: yes
+          state: latest
+# updating kernel package
       - name: updating kernel.
         yum:
           name: kernel*
           state: latest
         register: task_result
-
+# reboot if kernel successfully updated
       - name: Reboot immediately if there was a change.
         shell: "sleep 5 && reboot"
         async: 1
