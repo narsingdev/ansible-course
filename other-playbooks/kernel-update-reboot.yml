@@ -28,8 +28,15 @@
           delay: 5
           timeout: 300
         when: task_result is changed
+# Listing all kernel installed packages
       - name: Checking all kernel package
         shell:  for PACKAGE in $(rpm -qa | grep kernel); do echo "$PACKAGE was installed on  $(date -d @$(rpm -q --qf "%{INSTALLTIME}\n" $PACKAGE))"; done
         register: result
       - name: Listing all kernel packages
         debug: var=result
+# Listing all Installed securtiy packages
+      - name: checking all security pkgs
+        shell: for PACKAGE in $(rpm -qa | grep security); do echo "$PACKAGE was installed on  $(date -d @$(rpm -q --qf "%{INSTALLTIME}\n" $PACKAGE))"; done
+        register: my_list
+      - name: Listing all Installed security packages
+        debug: var=my_list
