@@ -1,6 +1,6 @@
 --- 
 - name: Install remote facts 
-  hosts: servera.example.com 
+  hosts: servera.lab.example.com 
   vars: 
     remote_dir: /etc/ansible/facts.d
     facts_file: custom.fact 
