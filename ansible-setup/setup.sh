@@ -45,10 +45,10 @@ become_ask_pass=False
 EOT
 
 cat <<EOT>> /home/admin/project/inventory
-[webservers]
+[web]
 servera.lab.example.com
 
-[dbservers]
+[db]
 serverb.lab.example.com
 
 EOT
